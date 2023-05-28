@@ -22,7 +22,7 @@ def fetch_film_data(films_data):
         text_full = text_begin + encoded_string + text_token + text_year + film_year
         response = requests.get(text_full)
         items = json.loads(response.text)
-        # нужно сделать проверку по году +-1 год, ибо многое фильмы различаются
+        # нужно сделать проверку по году +-1/2 г, ибо многое фильмы различаются
         if items['pages'] == 0:
             df_err = pd.DataFrame([[0, films_data.loc[film_number].title, 0, 0]], columns=['url', 'title', 'rating', 'year'])
             df = pd.concat([df, df_err], ignore_index=True)
